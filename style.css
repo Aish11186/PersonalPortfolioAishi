@@ -6,8 +6,11 @@
 }
 
 body {
-    background: black;
+    
+    background: url(https://i.pinimg.com/1200x/2b/c7/61/2bc761935beea3ed943fc3f9135430ee.jpg);
     color:white;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .my-loader {
@@ -75,7 +78,7 @@ nav {
     padding: 20px 10%;
     position: sticky;
     top: 0;
-    background: black;
+    
 }
 
 nav ul {

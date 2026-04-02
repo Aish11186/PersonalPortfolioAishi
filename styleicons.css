@@ -1,3 +1,4 @@
+
 .centrewrapicons{
   display: flex;
   justify-content: center;  
@@ -39,7 +40,6 @@
 
 .svg {
   transition: all 0.3s;
-  /* if you find some problems change w - h : 30px*/
   padding: 1rem;
   height: 50px;
   width: 50px;
