@@ -54,7 +54,7 @@ body {
   scroll-snap-type: x mandatory;
   scroll-padding-top: 24px;
   border-radius: 8px;
-  gap: 20px;
+  gap: 50px;
 }
 
 .container .card {
@@ -67,23 +67,26 @@ body {
 
 .card .card__image {
   flex: 1;
-  height: 340px;
+  height: 300px;
 }
 
 .card:nth-child(1) .card__image {
-  background-image:
+  background-image: url("https://i.pinimg.com/1200x/c3/d1/92/c3d1929e4ebea807d0a40989a17e0bb8.jpg");
 }
 
 .card:nth-child(2) .card__image {
-  background-image: 
-  
+  background-image: url("emotionpicforportfolio.png");
 }
 
 .card:nth-child(3) .card__image {
-  background-image:
+  background-image:url("pricepicforportfolio.png");
+  
 }
 .card:nth-child(4) .card__image {
-  background-image:bg2.jpg;
+  background-image: url("picforvoicivityforportfolio.png");
+}
+.card:nth-child(5) .card__image {
+  background-image:url(https://i.pinimg.com/1200x/ff/bd/dd/ffbddd37b2ceffe750fc534bfa11429d.jpg);
 }
 
 .card .card__content {
