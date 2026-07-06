@@ -1,31 +1,51 @@
 nav {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px 10%;
-    position: sticky;
-    top: 0;
-    background: black;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 10%;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(10, 11, 16, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 nav ul {
-    display: flex;
-    gap: 20px;
-    list-style: none;
+  display: flex;
+  gap: 20px;
+  list-style: none;
 }
 
 nav a {
-    text-decoration: none;
-    color: white;
+  text-decoration: none;
+  color: white;
 }
+
 body {
-  background-image:url(https://i.pinimg.com/736x/f3/c2/05/f3c205dfd514cb80501cbf7c7c60c0bf.jpg);
+  position: relative;
 }
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-image: url(https://i.pinimg.com/736x/f3/c2/05/f3c205dfd514cb80501cbf7c7c60c0bf.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .centrewrapprojects {
-  display: flex;    
-    align-items: center;
-    justify-content: center;   
-    vertical-align: center; 
-    height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: center;
+  height: 100%;
 }
 
 .scroll-1::-webkit-scrollbar {
@@ -71,22 +91,23 @@ body {
 }
 
 .card:nth-child(1) .card__image {
-  background-image: url("https://i.pinimg.com/1200x/c3/d1/92/c3d1929e4ebea807d0a40989a17e0bb8.jpg");
+  background-image: url("imageformrm.png");
 }
 
 .card:nth-child(2) .card__image {
-  background-image: url("emotionpicforportfolio.png");
+  background-image: url("https://i.pinimg.com/1200x/c3/d1/92/c3d1929e4ebea807d0a40989a17e0bb8.jpg");
 }
 
 .card:nth-child(3) .card__image {
-  background-image:url("pricepicforportfolio.png");
-  
+  background-image: url("emotionpicforportfolio.png");
 }
+
 .card:nth-child(4) .card__image {
-  background-image: url("picforvoicivityforportfolio.png");
+  background-image: url("pricepicforportfolio.png");
 }
+
 .card:nth-child(5) .card__image {
-  background-image:url(https://i.pinimg.com/1200x/ff/bd/dd/ffbddd37b2ceffe750fc534bfa11429d.jpg);
+  background-image: url("picforvoicivityforportfolio.png");
 }
 
 .card .card__content {

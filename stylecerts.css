@@ -5,7 +5,11 @@ nav {
     padding: 20px 10%;
     position: sticky;
     top: 0;
-    background: black;
+    z-index: 1000;
+    background: rgba(10, 11, 16, 0.4);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 nav ul {
