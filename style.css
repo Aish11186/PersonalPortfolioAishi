@@ -213,6 +213,12 @@ nav a {
   height: 250px;
   border-radius: 50%;
   object-fit: cover; 
+  align-self: center;
+  align-items: center;
+  align-content: center;
+  align: center;
+  display: flex;
+  justify-content: center;
 }
 .about-page {
     padding: 80px 10%;
@@ -256,7 +262,7 @@ nav a {
 
 .card-about {
   width: 900px;
-  height: 800px;
+  height: 600px;
   background: #15001f;
   border: 1px solid #c042ff;
   font-size: 16px;
