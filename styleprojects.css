@@ -1,5 +1,5 @@
-/* Google Fonts Import (if needed, default fallback is Arial) */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
 
 /* NAV */
 nav {
@@ -46,7 +46,7 @@ body {
   min-height: 100vh;
   background-color: #08090c;
   color: #fff;
-  font-family: 'Inter', Arial, sans-serif;
+  font-family: 'IBM Plex Mono', monospace;
 }
 
 body::before {
