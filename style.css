@@ -277,6 +277,12 @@ nav a {
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(192, 66, 255, 0.15);
   margin-top: 30px;
+  text-align: left;
+}
+
+.cppcode {
+  width: 100%;
+  text-align: left;
 }
 
 .titlebar {
@@ -340,7 +346,7 @@ nav a {
 #pre {
   overflow-x: auto;
   width: 100%;
-  padding: 16px 20px;
+  padding: 20px 24px;
   height: auto;
   color: #bafff8;
   white-space: pre-wrap;
@@ -349,15 +355,27 @@ nav a {
   overflow-wrap: break-word;
   line-height: 1.6;
   box-sizing: border-box;
+  text-align: left;
 }
 
-#pre code,
-#pre p {
+#pre code {
+  display: block;
+  text-align: left;
   white-space: pre-wrap;
   word-wrap: break-word;
   word-break: break-word;
   overflow-wrap: break-word;
-  font-family: inherit;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.about-item {
+  display: block;
+  margin: 7px 0 7px 16px;
+  padding-left: 20px;
+  text-indent: -20px;
+  line-height: 1.55;
+  color: #bafff8;
+  text-align: left;
 }
 
 @media (max-width: 768px) {
@@ -385,9 +403,16 @@ nav a {
   }
 
   #pre {
-    padding: 12px 14px;
+    padding: 14px 16px;
     font-size: 12.5px;
-    line-height: 1.5;
+    line-height: 1.55;
+  }
+
+  .about-item {
+    margin: 6px 0 6px 10px;
+    padding-left: 16px;
+    text-indent: -16px;
+    line-height: 1.48;
   }
 }
 
@@ -414,9 +439,16 @@ nav a {
   }
 
   #pre {
-    padding: 10px 10px;
+    padding: 12px 10px;
     font-size: 11px;
     line-height: 1.45;
+  }
+
+  .about-item {
+    margin: 5px 0 5px 8px;
+    padding-left: 14px;
+    text-indent: -14px;
+    line-height: 1.42;
   }
 
   .titlebar {
