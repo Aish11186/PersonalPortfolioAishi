@@ -7,12 +7,19 @@
     <title>Projects</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="styleprojects.css">
 </head>
 
 <body>
+
+    <!-- Fixed Top Progress Indicator -->
+    <div class="progress-bar-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
 
     <nav>
         <a href="about.html" class="nav-link">About</a>
@@ -21,25 +28,30 @@
         <a href="contact.html" class="nav-link">Contact</a>
     </nav>
 
+    <h1 class="projects-page-heading">My Projects</h1>
+
     <main class="projects-container">
-        <h1 class="projects-title">My Projects</h1>
-        <div class="projects-list">
-            <!-- Project Card 1: myRepoMate -->
+        <!-- Project Card 1: myRepoMate -->
+        <section class="project-section" id="project-1">
             <article class="project-card">
                 <div class="card__image"></div>
                 <div class="card__content">
                     <span class="card__title">myRepoMate</span>
                     <p class="card__describe">
                         >Developed myRepoMate, an LLM-powered GitHub repository analysis tool that converts repository
-                        structure, documentation, and source code into actionable onboarding guidance for developers.<br><br>
+                        structure, documentation, and source code into actionable onboarding guidance for
+                        developers.<br><br>
                         >Designed context retrieval and prompt-engineering pipelines to generate repository summaries,
                         technology stack breakdowns, and recommended code exploration paths.<br><br>
-                        >Released the product to an initial user base of 25+ developers to help them break into open source.
+                        >Released the product to an initial user base of 25+ developers to help them break into open
+                        source.
                     </p>
                 </div>
             </article>
+        </section>
 
-            <!-- Project Card 2: Customer Support Intelligence system -->
+        <!-- Project Card 2: Customer Support Intelligence system -->
+        <section class="project-section" id="project-2">
             <article class="project-card">
                 <div class="card__image"></div>
                 <div class="card__content">
@@ -53,12 +65,15 @@
                         real-time inference.<br><br>
                         >Delivered ~2–3s faster decision-making than LLM-based solutions while enabling startups to cut
                         costs and unlock conversation-level insights for real-time market intelligence.<br><br>
-                        Github: <a href="https://github.com/Aish11186/bot-escalation-system" target="_blank">Github Link</a>
+                        Github: <a href="https://github.com/Aish11186/bot-escalation-system" target="_blank">Github
+                            Link</a>
                     </p>
                 </div>
             </article>
+        </section>
 
-            <!-- Project Card 3: Emotion Based Playlist Pipeline -->
+        <!-- Project Card 3: Emotion Based Playlist Pipeline -->
+        <section class="project-section" id="project-3">
             <article class="project-card">
                 <div class="card__image"></div>
                 <div class="card__content">
@@ -68,12 +83,15 @@
                         models.<br><br>
                         >Mapped classified emotions to dynamic music playlists, delivering a fully functional ML
                         application spanning raw data processing, model inference, and user-facing output.<br><br>
-                        Github: <a href="https://github.com/Aish11186/EmotionMusicRecomendationSystem" target="_blank">Github Link</a>
+                        Github: <a href="https://github.com/Aish11186/EmotionMusicRecomendationSystem"
+                            target="_blank">Github Link</a>
                     </p>
                 </div>
             </article>
+        </section>
 
-            <!-- Project Card 4: Amazon Price Tracker & Email Notifier -->
+        <!-- Project Card 4: Amazon Price Tracker & Email Notifier -->
+        <section class="project-section" id="project-4">
             <article class="project-card">
                 <div class="card__image"></div>
                 <div class="card__content">
@@ -84,12 +102,15 @@
                         >Integrated schedule polling for periodic monitoring and built a Tkinter-based GUI for user
                         interaction, delivering a complete, deployable desktop application with end-to-end backend
                         automation.<br><br>
-                        Github: <a href="https://github.com/Aish11186/AmazonPriceTrackerwithlink" target="_blank">Github Link</a>
+                        Github: <a href="https://github.com/Aish11186/AmazonPriceTrackerwithlink" target="_blank">Github
+                            Link</a>
                     </p>
                 </div>
             </article>
+        </section>
 
-            <!-- Project Card 5: Voicivity (Finalist) -->
+        <!-- Project Card 5: Voicivity (Finalist) -->
+        <section class="project-section" id="project-5">
             <article class="project-card">
                 <div class="card__image"></div>
                 <div class="card__content">
@@ -104,10 +125,11 @@
                     </p>
                 </div>
             </article>
-        </div>
+        </section>
     </main>
 
     <script src="script.js"></script>
+    <script src="projects.js"></script>
 </body>
 
 </html>
