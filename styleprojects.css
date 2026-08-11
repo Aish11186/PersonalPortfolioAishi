@@ -166,22 +166,26 @@ nav a:hover {
 
 /* Project images selectors */
 #project-1 .card__image {
-  background-image: url("imageformrm.png");
+  background-image: url("heliumpicforportfolio.jpg");
 }
 
 #project-2 .card__image {
-  background-image: url("https://i.pinimg.com/1200x/c3/d1/92/c3d1929e4ebea807d0a40989a17e0bb8.jpg");
+  background-image: url("imageformrm.png");
 }
 
 #project-3 .card__image {
-  background-image: url("emotionpicforportfolio.png");
+  background-image: url("https://i.pinimg.com/1200x/c3/d1/92/c3d1929e4ebea807d0a40989a17e0bb8.jpg");
 }
 
 #project-4 .card__image {
-  background-image: url("pricepicforportfolio.png");
+  background-image: url("emotionpicforportfolio.png");
 }
 
 #project-5 .card__image {
+  background-image: url("pricepicforportfolio.png");
+}
+
+#project-6 .card__image {
   background-image: url("picforvoicivityforportfolio.png");
 }
 
