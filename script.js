@@ -139,209 +139,33 @@ class TextScrambler {
 
 // Initialize Scramble & Card Effects on Load
 document.addEventListener('DOMContentLoaded', () => {
-  const experiencesSection = document.querySelector('#experiences');
-  if (experiencesSection) {
-    const heading = experiencesSection.querySelector('.scramble-heading');
-    const caption = experiencesSection.querySelector('.scramble-caption');
-    const grid = experiencesSection.querySelector('.experience-grid');
+  // Scramble label/text animations on scroll for minimal-sections
+  const minimalSections = document.querySelectorAll('.minimal-section');
+  
+  minimalSections.forEach(section => {
+    const scrambleElements = section.querySelectorAll('.scramble-label, .scramble-text');
+    const scramblers = [];
+    scrambleElements.forEach(el => {
+      scramblers.push(new TextScrambler(el, 20));
+    });
     
-    let headingScrambler = null;
-    let captionScrambler = null;
-    
-    if (heading) {
-      headingScrambler = new TextScrambler(heading, 25);
-    }
-    if (caption) {
-      captionScrambler = new TextScrambler(caption, 15);
-    }
-    
-    // Intersection Observer to trigger scramble
-    let isScrambled = false;
-    const observer = new IntersectionObserver((entries) => {
+    let isObserved = false;
+    const sectionObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          if (!isScrambled) {
-            isScrambled = true;
-            if (headingScrambler) {
-              headingScrambler.scramble().then(() => {
-                if (caption) caption.classList.add('visible');
-                if (captionScrambler) {
-                  captionScrambler.scramble().then(() => {
-                    if (grid) grid.classList.add('visible');
-                  });
-                } else {
-                  if (grid) grid.classList.add('visible');
-                }
-              });
-            } else {
-              if (caption) caption.classList.add('visible');
-              if (grid) grid.classList.add('visible');
-            }
+          if (!isObserved) {
+            isObserved = true;
+            section.classList.add('visible');
+            scramblers.forEach(s => s.scramble());
           }
         } else {
-          // Reset when scrolling back up (or out of view)
-          isScrambled = false;
-          if (headingScrambler) headingScrambler.reset();
-          if (captionScrambler) captionScrambler.reset();
-          if (caption) caption.classList.remove('visible');
-          if (grid) grid.classList.remove('visible');
+          isObserved = false;
+          section.classList.remove('visible');
+          scramblers.forEach(s => s.reset());
         }
       });
     }, { threshold: 0.15 });
     
-    observer.observe(experiencesSection);
-    
-    // Interactive mouse move glow effect for cards
-    const cards = experiencesSection.querySelectorAll('.experience-card');
-    cards.forEach(card => {
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        card.style.setProperty('--x', `${x}px`);
-        card.style.setProperty('--y', `${y}px`);
-      });
-    });
-  }
-
-  // NAV GUIDE HANDWRITTEN EFFECT
-  const navGuideSection = document.querySelector('#nav-guide');
-  if (navGuideSection) {
-    const textWrapper = navGuideSection.querySelector('.nav-guide-text');
-    if (textWrapper) {
-      const handSpans = prepareHandwriting(textWrapper);
-      
-      let guideObserved = false;
-      const guideObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            if (!guideObserved) {
-              guideObserved = true;
-              startHandwriting(handSpans);
-            }
-          } else {
-            guideObserved = false;
-            resetHandwriting(handSpans);
-          }
-        });
-      }, { threshold: 0.15 });
-      
-      guideObserver.observe(navGuideSection);
-    }
-  }
+    sectionObserver.observe(section);
+  });
 });
-
-// ORGANIC INK HANDWRITING HELPER FUNCTIONS
-const prepareHandwriting = (container) => {
-  const chars = [];
-  
-  const recurse = (node) => {
-    if (node.nodeType === Node.TEXT_NODE) {
-      let text = node.textContent;
-      
-      const isFirst = (node.previousSibling === null);
-      const isLast = (node.nextSibling === null);
-      
-      // Collapse all formatting whitespace sequences (spaces, tabs, newlines) to a single space
-      text = text.replace(/\s+/g, ' ');
-      
-      if (isFirst) {
-        text = text.replace(/^\s+/, ''); // trim leading space at tag border
-      }
-      if (isLast) {
-        text = text.replace(/\s+$/, ''); // trim trailing space at tag border
-      }
-      
-      if (text.length === 0) return;
-      
-      const fragment = document.createDocumentFragment();
-      for (let i = 0; i < text.length; i++) {
-        const span = document.createElement('span');
-        span.className = 'handwritten-char';
-        
-        if (text[i] === ' ') {
-          span.innerHTML = '&nbsp;';
-        } else {
-          span.textContent = text[i];
-        }
-        
-        // Assign a tiny, organic, casual rotation to simulate actual penmanship
-        const rot = (Math.random() * 6 - 3).toFixed(1);
-        span.style.setProperty('--rot', `${rot}deg`);
-        
-        fragment.appendChild(span);
-        chars.push({
-          element: span,
-          char: text[i]
-        });
-      }
-      node.parentNode.replaceChild(fragment, node);
-    } else if (node.nodeType === Node.ELEMENT_NODE) {
-      const children = Array.from(node.childNodes);
-      children.forEach(recurse);
-    }
-  };
-  
-  recurse(container);
-  return chars;
-};
-
-let handwritingTimer = null;
-let currentHandwritingIndex = 0;
-let isWriting = false;
-
-const startHandwriting = (chars) => {
-  isWriting = true;
-  currentHandwritingIndex = 0;
-  
-  chars.forEach(item => {
-    item.element.classList.remove('written');
-    const parentLink = item.element.closest('.nav-guide-link');
-    if (parentLink) {
-      parentLink.classList.remove('active-link');
-    }
-  });
-  
-  const writeNext = () => {
-    if (!isWriting || currentHandwritingIndex >= chars.length) {
-      isWriting = false;
-      return;
-    }
-    
-    const item = chars[currentHandwritingIndex];
-    item.element.classList.add('written');
-    
-    // Toggle active-link class when the text inside the link begins to appear
-    const parentLink = item.element.closest('.nav-guide-link');
-    if (parentLink) {
-      parentLink.classList.add('active-link');
-    }
-    
-    let delay = 5 + Math.random() * 7; // Even faster letter delay (5ms - 12ms)
-    if (item.char === ' ') {
-      delay = 12 + Math.random() * 10; // Snappier word space delay
-    } else if (['.', ',', ':', ')'].includes(item.char)) {
-      delay = 40 + Math.random() * 30; // Snappier punctuation pause
-    }
-    
-    currentHandwritingIndex++;
-    handwritingTimer = setTimeout(writeNext, delay);
-  };
-  
-  writeNext();
-};
-
-const resetHandwriting = (chars) => {
-  isWriting = false;
-  if (handwritingTimer) {
-    clearTimeout(handwritingTimer);
-    handwritingTimer = null;
-  }
-  chars.forEach(item => {
-    item.element.classList.remove('written');
-    const parentLink = item.element.closest('.nav-guide-link');
-    if (parentLink) {
-      parentLink.classList.remove('active-link');
-    }
-  });
-};
