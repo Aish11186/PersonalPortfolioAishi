@@ -956,6 +956,12 @@
     .mac-btn.maximize {
         display: none;
     }
+
+    /* Adjust scroll pointer position on mobile to match the smaller button size and offset */
+    .chat-pointer-container {
+        bottom: 75px !important;
+        right: 45px !important;
+    }
 }
 
 /* Scroll pointer note with hand-drawn squiggly arrow */

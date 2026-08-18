@@ -1021,21 +1021,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const chatPointerContainer = document.getElementById("chatPointerContainer");
     let pointerTimeout = null;
     let hidePointerAfterTimeout = false;
-    let wasAtTop = false;
+    let wasInTriggerArea = false;
 
     function updatePointerVisibility() {
         if (!chatPointerContainer) return;
 
         const isLanding = !!document.querySelector(".landing-section");
-        const isAtTop = window.scrollY <= 50;
         const isChatClosed = !isOpen;
         const isDesktop = window.innerWidth > 768;
+        const isInTriggerArea = isDesktop ? (window.scrollY <= 50) : (window.scrollY >= 150);
 
-        // Handle transition timers when hitting the top or scrolling down
-        if (isLanding && isChatClosed && isDesktop) {
-            if (isAtTop) {
-                if (!wasAtTop) {
-                    wasAtTop = true;
+        // Handle transition timers when entering/exiting the active trigger area
+        if (isLanding && isChatClosed) {
+            if (isInTriggerArea) {
+                if (!wasInTriggerArea) {
+                    wasInTriggerArea = true;
                     hidePointerAfterTimeout = false;
                     clearTimeout(pointerTimeout);
                     pointerTimeout = setTimeout(() => {
@@ -1044,21 +1044,21 @@ document.addEventListener("DOMContentLoaded", () => {
                     }, 4000);
                 }
             } else {
-                if (wasAtTop) {
-                    wasAtTop = false;
+                if (wasInTriggerArea) {
+                    wasInTriggerArea = false;
                     hidePointerAfterTimeout = false;
                     clearTimeout(pointerTimeout);
                 }
             }
         } else {
             // Reset state if window state changes or on non-landing views
-            wasAtTop = false;
+            wasInTriggerArea = false;
             hidePointerAfterTimeout = false;
             clearTimeout(pointerTimeout);
         }
 
-        // Show note only if landing/top/closed/desktop AND the 4-second display timer is still active
-        if (isLanding && isAtTop && isChatClosed && isDesktop && !hidePointerAfterTimeout) {
+        // Show note only if we are in the active trigger area (top on desktop, scrolled down on mobile) AND the 4-second timer is active
+        if (isLanding && isChatClosed && isInTriggerArea && !hidePointerAfterTimeout) {
             chatPointerContainer.classList.add("visible");
         } else {
             chatPointerContainer.classList.remove("visible");
