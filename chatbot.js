@@ -58,7 +58,13 @@ Feel free to ask me about my projects, research, education, experience, or skill
 * **LinkedIn**: [linkedin.com/in/aishi-tiwari-90a253345/](https://linkedin.com/in/aishi-tiwari-90a253345/)
 * **GitHub**: [github.com/Aish11186](https://github.com/Aish11186)
 * **LeetCode**: [leetcode.com/u/Aish1811/](https://leetcode.com/u/Aish1811/)
-* **Resume**: [Read Aishi's Resume](https://docs.google.com/document/d/1LC6YdG85i8jWNA55De0WIBDQw75psxawSwsD971S67k/edit?usp=sharing)`
+* **Resume**: [Read Aishi's Resume](https://docs.google.com/document/d/1LC6YdG85i8jWNA55De0WIBDQw75psxawSwsD971S67k/edit?usp=sharing)`,
+
+    INTERESTS: `Aishi's main academic and personal interests include:
+* **Artificial Intelligence & Machine Learning**: Computer Vision, Natural Language Processing (NLP), and LLM middleware integrations.
+* **Compiler Design & Systems Programming**: Hands-on compilation chains, assembler structures, and low-level code compilation.
+* **Literature & Reading**: Reading non-fiction, philosophy, and classical fiction (she is an avid reader of books like *A Thousand Splendid Suns* and *The Sapiens Trilogy*).
+* **Problem Solving**: Algorithmic reasoning and solving algorithmic challenges (over 350 LeetCode problems solved).`
 };
 
 // 2. Setup Suggestion Chips and Predefined Answers
@@ -82,19 +88,19 @@ function getPredefinedResponse(userInput) {
     if (text.includes("project") || text.includes("portfolio") || text.includes("code") || text.includes("helium") || text.includes("repomate")) {
         return PORTFOLIO_DB.PROJECTS;
     }
-    if (text.includes("research") || text.includes("iit") || text.includes("iitd") || text.includes("larsen") || text.includes("toubro") || text.includes("l&t")) {
+    if (text.includes("research") || text.includes("iit") || text.includes("iitd") || text.includes("larsen") || text.includes("toubro") || text.includes("l&t") || text.includes("working on") || text.includes("right now") || text.includes("currently")) {
         return PORTFOLIO_DB.RESEARCH;
     }
     if (text.includes("skill") || text.includes("skills") || text.includes("technologies") || text.includes("languages") || text.includes("programming") || text.includes("dsa") || text.includes("leetcode")) {
         return PORTFOLIO_DB.TECHNICAL_SKILLS;
     }
-    if (text.includes("experience") || text.includes("internship") || text.includes("intern") || text.includes("niti") || text.includes("aayog") || text.includes("work")) {
+    if (text.includes("experience") || text.includes("internship") || text.includes("internships") || text.includes("intern") || text.includes("niti") || text.includes("aayog") || text.includes("work") || text.includes("companies") || text.includes("worked") || text.includes("employed")) {
         return PORTFOLIO_DB.EXPERIENCE;
     }
     if (text.includes("education") || text.includes("college") || text.includes("gpa") || text.includes("btech") || text.includes("degree") || text.includes("marks")) {
         return PORTFOLIO_DB.EDUCATION;
     }
-    if (text.includes("achievement") || text.includes("achievements") || text.includes("hackathon") || text.includes("sih") || text.includes("winner") || text.includes("finalist") || text.includes("google") || text.includes("adobe")) {
+    if (text.includes("achievement") || text.includes("achievements") || text.includes("hackathon") || text.includes("sih") || text.includes("winner") || text.includes("finalist") || text.includes("google") || text.includes("adobe") || text.includes("awards") || text.includes("accomplishment") || text.includes("accomplishments") || text.includes("won")) {
         return PORTFOLIO_DB.ACHIEVEMENTS;
     }
     if (text.includes("contact") || text.includes("email") || text.includes("phone") || text.includes("reach") || text.includes("hire") || text.includes("connect") || text.includes("linkedin") || text.includes("github") || text.includes("resume")) {
@@ -102,6 +108,9 @@ function getPredefinedResponse(userInput) {
     }
     if (text.includes("photo") || text.includes("picture") || text.includes("image") || text.includes("face") || text.includes("look like") || text.includes("screenshot")) {
         return "Here is my profile photo:\n\n![Aishi Tiwari](profile.jpg)\n\nHi this is me!";
+    }
+    if (text.includes("interest") || text.includes("interests") || text.includes("hobby") || text.includes("hobbies") || text.includes("like to do") || text.includes("free time")) {
+        return PORTFOLIO_DB.INTERESTS;
     }
     if (text.includes("about") || text.includes("aishi") || text.includes("who is") || text.includes("profile") || text.includes("hello") || text.includes("hi") || text.includes("hey")) {
         return PORTFOLIO_DB.ABOUT;
