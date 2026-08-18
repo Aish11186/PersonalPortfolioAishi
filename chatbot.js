@@ -472,6 +472,11 @@ document.addEventListener("DOMContentLoaded", () => {
         if (isOpen) {
             centerChatWindow();
 
+            // Force sidebar open when opening the chatbot window
+            chatSidebar.classList.remove("collapsed");
+            chatSidebar.classList.add("active");
+            localStorage.setItem("portfolio_chat_sidebar_collapsed", "false");
+
             // Calculate dynamic pinch origin sourcing from the floating launcher button
             if (window.innerWidth > 768) {
                 const btnRect = chatFloatingBtn.getBoundingClientRect();
