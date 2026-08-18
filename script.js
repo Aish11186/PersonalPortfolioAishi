@@ -61,7 +61,7 @@ class TextScrambler {
     this.el = el;
     this.targetText = el.getAttribute('data-text') || el.textContent || '';
     this.speed = speed;
-    this.chars = '!<>-_\\/[]{}—=+*^?#________abcdefghijklmnopqrstuvwxyz0123456789';
+    this.chars = '01+-__--/\\<>[]{}*#^';
     this.isAnimating = false;
     this.timeoutId = null;
     this.el.textContent = ' '.repeat(this.targetText.length);
@@ -116,9 +116,12 @@ class TextScrambler {
         
         tickCount++;
         if (tickCount >= 1) {
-          if (lockIndex < length) {
-            progress[lockIndex] = 1;
-            lockIndex++;
+          // Lock 3 characters per tick for a faster, snappier reveal
+          for (let k = 0; k < 3; k++) {
+            if (lockIndex < length) {
+              progress[lockIndex] = 1;
+              lockIndex++;
+            }
           }
           tickCount = 0;
         }
@@ -146,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const scrambleElements = section.querySelectorAll('.scramble-label, .scramble-text');
     const scramblers = [];
     scrambleElements.forEach(el => {
-      scramblers.push(new TextScrambler(el, 20));
+      scramblers.push(new TextScrambler(el, 12));
     });
     
     let isObserved = false;

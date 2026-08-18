@@ -104,6 +104,11 @@ body.scrolled-state {
 .scramble-char {
   color: #52525b;
   font-family: 'IBM Plex Mono', monospace;
+  text-shadow: none !important;
+}
+
+.scramble-text {
+  text-shadow: none !important;
 }
 
 /* Section A: RIGHT NOW, I'M... */
