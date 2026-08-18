@@ -82,15 +82,16 @@
     overflow: hidden;
     opacity: 0;
     pointer-events: none;
-    transform: scale(0.6) translate(-50%, -50%);
-    transform-origin: top left;
-    transition: opacity 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transform: scale(0);
+    transform-origin: bottom right;
+    transition: opacity 0.25s ease-in, transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .chat-window.open {
     opacity: 1;
     pointer-events: auto;
-    transform: scale(1) translate(0, 0);
+    transform: scale(1);
+    transition: opacity 0.3s ease-out, transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 /* Macbook Window Header (ChatGPT Sidebar dark: #171717) */
@@ -823,25 +824,126 @@
         cursor: default !important;
     }
     
-    /* Sidebar Overlay Layout on Mobile */
+    /* Sidebar Overlay Layout on Mobile - Forced Inline Side-by-Side */
     .chat-sidebar {
-        position: absolute;
-        left: 0;
-        top: 45px;
-        bottom: 0;
-        z-index: 1001;
-        width: 200px;
-        transform: translateX(-100%);
-        box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5);
-    }
-    
-    .chat-sidebar.active {
-        transform: translateX(0);
+        position: static !important;
+        transform: none !important;
+        width: 140px !important;
+        border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+        box-shadow: none !important;
     }
     
     .chat-sidebar.collapsed {
-        width: 200px;
-        transform: translateX(-100%);
+        width: 140px !important;
+        transform: none !important;
+    }
+
+    .sidebar-toggle-btn {
+        display: none !important;
+    }
+
+    /* Scaling buttons and profile row to fit inside the narrower 140px mobile sidebar */
+    .new-chat-btn,
+    .sidebar-nav-item {
+        font-size: 11px !important;
+        padding: 6px 8px !important;
+        gap: 6px !important;
+        border-radius: 6px !important;
+    }
+
+    .new-chat-btn svg,
+    .sidebar-nav-item svg {
+        width: 14px !important;
+        height: 14px !important;
+    }
+
+    .sidebar-footer-item {
+        font-size: 11px !important;
+        padding: 6px 8px !important;
+        gap: 6px !important;
+    }
+
+    .sidebar-footer-item svg {
+        width: 14px !important;
+        height: 14px !important;
+    }
+
+    .clear-btn {
+        font-size: 11px !important;
+        padding: 6px 8px !important;
+        gap: 6px !important;
+    }
+
+    .clear-btn svg {
+        width: 14px !important;
+        height: 14px !important;
+    }
+
+    .sidebar-profile-row {
+        padding: 6px 8px !important;
+        gap: 8px !important;
+    }
+
+    .profile-avatar-img {
+        width: 24px !important;
+        height: 24px !important;
+    }
+
+    .profile-name {
+        font-size: 11px !important;
+    }
+
+    .profile-plan {
+        font-size: 9px !important;
+    }
+
+    /* Responsive adjustments for Images & Library Page Views */
+    .profile-image-wrapper {
+        width: 160px !important;
+        height: 160px !important;
+    }
+
+    .chat-images-view {
+        padding: 12px !important;
+    }
+
+    .chat-library-view {
+        padding: 15px 12px !important;
+    }
+
+    .library-heading {
+        font-size: 13px !important;
+        margin-bottom: 16px !important;
+    }
+
+    .library-books-list {
+        gap: 12px !important;
+    }
+
+    .library-book-item {
+        padding-bottom: 10px !important;
+    }
+
+    .book-meta {
+        gap: 6px !important;
+        margin-bottom: 4px !important;
+    }
+
+    .book-number {
+        font-size: 12px !important;
+    }
+
+    .book-title {
+        font-size: 12px !important;
+    }
+
+    .book-author {
+        font-size: 10.5px !important;
+    }
+
+    .book-quote {
+        font-size: 11px !important;
+        padding-left: 8px !important;
     }
 
     /* suggestions grid column collapse */

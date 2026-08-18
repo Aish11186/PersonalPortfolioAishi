@@ -460,7 +460,6 @@ document.addEventListener("DOMContentLoaded", () => {
         chatWindow.style.top = top + "px";
         chatWindow.style.width = width + "px";
         chatWindow.style.height = height + "px";
-        chatWindow.style.transform = "scale(1)";
     }
 
     function toggleChatWindow() {
@@ -472,15 +471,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (isOpen) {
             centerChatWindow();
+
+            // Calculate dynamic pinch origin sourcing from the floating launcher button
+            if (window.innerWidth > 768) {
+                const btnRect = chatFloatingBtn.getBoundingClientRect();
+                const winRect = chatWindow.getBoundingClientRect();
+                const originX = (btnRect.left + btnRect.width / 2) - winRect.left;
+                const originY = (btnRect.top + btnRect.height / 2) - winRect.top;
+                chatWindow.style.transformOrigin = `${originX}px ${originY}px`;
+            } else {
+                chatWindow.style.transformOrigin = "bottom right";
+            }
+
             chatWindow.style.transform = "scale(0)";
             chatWindow.style.opacity = "0";
             chatWindow.offsetHeight; // Reflow trigger
             chatWindow.classList.add("open");
             chatWindow.style.transform = "scale(1)";
             chatWindow.style.opacity = "1";
-            chatInputField.focus();
+            if (window.innerWidth > 768) {
+                chatInputField.focus();
+            }
             scrollToBottom();
         } else {
+            // Recalculate dynamic origin for close in case window was dragged
+            if (window.innerWidth > 768) {
+                const btnRect = chatFloatingBtn.getBoundingClientRect();
+                const winRect = chatWindow.getBoundingClientRect();
+                const originX = (btnRect.left + btnRect.width / 2) - winRect.left;
+                const originY = (btnRect.top + btnRect.height / 2) - winRect.top;
+                chatWindow.style.transformOrigin = `${originX}px ${originY}px`;
+            }
+
             chatWindow.style.transform = "scale(0)";
             chatWindow.style.opacity = "0";
             setTimeout(() => {
@@ -493,6 +515,9 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("resize", () => {
         if (isOpen) {
             centerChatWindow();
+            if (window.innerWidth > 768) {
+                chatWindow.style.transform = "scale(1)";
+            }
         }
     });
 
@@ -547,6 +572,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function onMouseUp() {
         isDragging = false;
+        chatWindow.style.transform = "scale(1)";
         document.removeEventListener("mousemove", onMouseMove);
         document.removeEventListener("mouseup", onMouseUp);
     }
