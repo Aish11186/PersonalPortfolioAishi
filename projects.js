@@ -180,47 +180,4 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
     });
-
-    // 5. LABELED PROGRESS BAR — a tiny floating tag rides the top bar, showing the active section.
-    const progressLabel = document.createElement("div");
-    progressLabel.classList.add("progress-label");
-    document.body.appendChild(progressLabel);
-
-    function sectionTitle(section, index) {
-        if (section.classList.contains("project-section--note")) return "— interlude —";
-        const titleEl = section.querySelector(".card__title");
-        if (titleEl) return titleEl.textContent.trim();
-        return String(index + 1).padStart(2, "0");
-    }
-
-    function updateLabelPosition() {
-        if (!progressBar) return;
-        const scrollTop = window.scrollY || document.documentElement.scrollTop;
-        const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-        if (scrollHeight <= 0) {
-            progressLabel.style.transform = `translateX(0px)`;
-            return;
-        }
-        const ratio = Math.min(Math.max(scrollTop / scrollHeight, 0), 1);
-        // Travel from ~24px to ~24px shy of the right edge of the bar track.
-        const trackLeft = 0;
-        const trackWidth = window.innerWidth;
-        const x = trackLeft + ratio * (trackWidth - 48);
-        progressLabel.style.transform = `translateX(${x}px)`;
-    }
-
-    function updateLabelText() {
-        const currentIndex = getCurrentSectionIndex();
-        const current = sections[currentIndex];
-        if (!current) return;
-        progressLabel.textContent = sectionTitle(current, currentIndex);
-    }
-
-    window.addEventListener("scroll", () => {
-        updateLabelPosition();
-        updateLabelText();
-    }, { passive: true });
-    window.addEventListener("resize", updateLabelPosition, { passive: true });
-    updateLabelPosition();
-    updateLabelText();
 });

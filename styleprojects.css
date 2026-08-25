@@ -71,34 +71,6 @@ body::before {
   box-shadow: none;
   transition: width 0.15s ease-out;
 }
-
-/* A tiny floating label that rides along the top progress bar, showing the active section's title. */
-.progress-label {
-  position: fixed;
-  top: 130px;
-  left: 0;
-  font-size: 0.65rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.55);
-  z-index: 1000;
-  pointer-events: none;
-  white-space: nowrap;
-  font-variant-numeric: tabular-nums;
-  transition: transform 0.2s ease-out, opacity 0.2s ease;
-  padding-left: 8px;
-  font-family: 'IBM Plex Mono', monospace;
-  max-width: calc(100vw - 24px);
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.progress-label::before {
-  content: "▸";
-  margin-right: 6px;
-  color: rgba(255, 255, 255, 0.35);
-}
-
 /* NAV */
 nav {
   display: flex;
