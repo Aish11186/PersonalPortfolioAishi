@@ -20,10 +20,12 @@ body, h1, h2, h3, h4, h5, h6, nav, button, input, textarea, select, .btn, .card,
 .my-loader {
   width: 200px;
   height: 200px;
-  perspective: 500px;
+  perspective: 600px;
+  transform-style: preserve-3d;
   margin: 50px auto;
   opacity: 0;
   animation: cube-fade-in 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  will-change: transform, opacity;
 }
 
 @keyframes cube-fade-in {
@@ -42,8 +44,10 @@ body, h1, h2, h3, h4, h5, h6, nav, button, input, textarea, select, .btn, .card,
   height: 100%;
   position: relative;
   transform-style: preserve-3d;
-  transform: rotateX(0deg) rotateY(0deg);
+  transform: rotateX(0deg) rotateY(0deg) translate3d(0, 0, 0);
   will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
   animation: my-rotateCube 7s infinite linear;
 }
 
@@ -53,27 +57,29 @@ body, h1, h2, h3, h4, h5, h6, nav, button, input, textarea, select, .btn, .card,
   flex-wrap: wrap;
   width: 100%;
   height: 100%;
+  transform-style: preserve-3d;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  outline: 1px solid transparent; /* Smooths rendering gaps and white seams in browsers */
 }
 
 .my-loader .face.front {
-  transform: translateZ(100px);
+  transform: translateZ(99.6px); /* Slightly less than 100px to overlap adjacent faces and cover subpixel gaps */
 }
 .my-loader .face.back {
-  transform: rotateY(180deg) translateZ(100px);
+  transform: rotateY(180deg) translateZ(99.6px);
 }
 .my-loader .face.left {
-  transform: rotateY(-90deg) translateZ(100px);
+  transform: rotateY(-90deg) translateZ(99.6px);
 }
 .my-loader .face.right {
-  transform: rotateY(90deg) translateZ(100px);
+  transform: rotateY(90deg) translateZ(99.6px);
 }
 .my-loader .face.top {
-  transform: rotateX(90deg) translateZ(100px);
+  transform: rotateX(90deg) translateZ(99.6px);
 }
 .my-loader .face.bottom {
-  transform: rotateX(-90deg) translateZ(100px);
+  transform: rotateX(-90deg) translateZ(99.6px);
 }
 
 .my-loader .cube {
@@ -81,6 +87,9 @@ body, h1, h2, h3, h4, h5, h6, nav, button, input, textarea, select, .btn, .card,
   height: calc(100% / 3);
   box-sizing: border-box;
   border: 1px solid #000;
+  outline: 1px solid transparent; /* Smooths subpixel edges during 3D transformations */
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 @keyframes my-rotateCube {
@@ -258,7 +267,8 @@ nav a {
 .icon-wrapper {
     position: relative;
     display: inline-block;
-}
+
+  }
 
 /* SHOW ON HOVER */
 .icon-wrapper:hover .tooltip {
