@@ -4,7 +4,7 @@
 /* HTML SCROLL SNAPPING & BASE */
 html {
   scroll-behavior: smooth;
-  scroll-snap-type: y mandatory;
+  scroll-snap-type: y proximity;
   background-color: #000000;
   overflow-x: hidden;
 }
@@ -154,7 +154,7 @@ nav a:hover {
   align-items: center;
   justify-content: center;
   scroll-snap-align: start;
-  scroll-snap-stop: always;
+  scroll-snap-stop: normal;
   padding: 145px 30px 25px 30px;
   box-sizing: border-box;
   position: relative;

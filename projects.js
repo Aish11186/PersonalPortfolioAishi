@@ -124,6 +124,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // Handle mouse wheel for discrete 1-project-per-scroll feel.
     // Interstitial note sections are passed through naturally — they are the breathing space.
     window.addEventListener("wheel", (e) => {
+        // Let the browser handle wheel and trackpad input natively. The CSS snap
+        // point settles the page after the gesture without interrupting it.
+        return;
+
         // Allow default trackpad micro-gestures if native snap is handling it,
         // but lock multi-step wheel leaps for crisp single-project navigation
         if (Math.abs(e.deltaY) < 25) return;
@@ -156,6 +160,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 4. KEYBOARD NAVIGATION (Arrow keys & Page Up/Down)
     window.addEventListener("keydown", (e) => {
+        const target = e.target;
+        if (target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement || target?.isContentEditable) {
+            return;
+        }
+
         if (["ArrowDown", "PageDown", "Space"].includes(e.code)) {
             const currentIndex = getCurrentSectionIndex();
             if (currentIndex < sections.length - 1) {
