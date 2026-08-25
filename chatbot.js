@@ -59,7 +59,7 @@ Feel free to ask me about my projects, research, education, experience, or skill
 * **LinkedIn**: [linkedin.com/in/aishi-tiwari-90a253345/](https://linkedin.com/in/aishi-tiwari-90a253345/)
 * **GitHub**: [github.com/Aish11186](https://github.com/Aish11186)
 * **LeetCode**: [leetcode.com/u/Aish1811/](https://leetcode.com/u/Aish1811/)
-* **Resume**: [Read Aishi's Resume](https://docs.google.com/document/d/1LC6YdG85i8jWNA55De0WIBDQw75psxawSwsD971S67k/edit?usp=sharing)`,
+* **Resume**: [Read Aishi's Resume](Aishi_Tiwari_Resume.pdf)`,
 
     INTERESTS: `Aishi's main academic and personal interests include:
 * **Artificial Intelligence & Machine Learning**: Computer Vision, Natural Language Processing (NLP), and LLM middleware integrations.
