@@ -72,6 +72,33 @@ body::before {
   transition: width 0.15s ease-out;
 }
 
+/* A tiny floating label that rides along the top progress bar, showing the active section's title. */
+.progress-label {
+  position: fixed;
+  top: 130px;
+  left: 0;
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  z-index: 1000;
+  pointer-events: none;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  transition: transform 0.2s ease-out, opacity 0.2s ease;
+  padding-left: 8px;
+  font-family: 'IBM Plex Mono', monospace;
+  max-width: calc(100vw - 24px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.progress-label::before {
+  content: "▸";
+  margin-right: 6px;
+  color: rgba(255, 255, 255, 0.35);
+}
+
 /* NAV */
 nav {
   display: flex;
@@ -131,6 +158,64 @@ nav a:hover {
   padding: 145px 30px 25px 30px;
   box-sizing: border-box;
   position: relative;
+}
+
+/* Interstitial context notes. Full viewport, no card chrome, single line. */
+.project-section--note {
+  padding: 0;
+  flex-direction: column;
+  text-align: center;
+  gap: 32px;
+}
+
+.note-line {
+  max-width: 820px;
+  padding: 0 24px;
+  font-size: clamp(1.4rem, 3.4vw, 2.4rem);
+  font-weight: 300;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.82);
+  letter-spacing: -0.2px;
+  font-family: 'IBM Plex Mono', monospace;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.6s ease;
+  transform: translateY(14px);
+  opacity: 0;
+}
+
+.project-section--note.is-active .note-line {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.note-line__prefix {
+  color: rgba(255, 255, 255, 0.3);
+  margin-right: 16px;
+  font-weight: 400;
+  font-size: 0.85em;
+}
+
+.note-line__cta {
+  display: inline-block;
+  font-size: 0.85rem;
+  letter-spacing: 1.5px;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  padding-bottom: 4px;
+  transition: color 0.3s ease, border-bottom-color 0.3s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s ease 0.15s;
+  transform: translateY(14px);
+  opacity: 0;
+  pointer-events: auto;
+}
+
+.project-section--note.is-active .note-line__cta {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.note-line__cta:hover {
+  color: #fff;
+  border-bottom-color: rgba(255, 255, 255, 0.9);
 }
 
 /* SEMANTIC PROJECT CARDS - LARGE SIZE */
