@@ -45,13 +45,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     sections.forEach(section => observer.observe(section));
 
-    // Inject a small "04 / 07" style index above each card title for a less-flat feel.
-    // Also wire a heading counter that ticks with the active slide.
-    const total = sections.length;
+    // Only project cards receive an index. Interlude sections are intentionally
+    // excluded from both card numbering and the heading counter.
+    const projectSections = sections.filter(section => !section.classList.contains("project-section--note"));
+    const total = projectSections.length;
     const heading = document.querySelector(".projects-page-heading");
 
     // Small index label above each card title.
-    sections.forEach((section, idx) => {
+    projectSections.forEach((section, idx) => {
         const title = section.querySelector(".card__title");
         if (!title || title.previousElementSibling?.classList.contains("card__index")) return;
         const indexEl = document.createElement("span");
@@ -74,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const headingCounterObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             if (!entry.isIntersecting || !counterEl) return;
-            const idx = sections.indexOf(entry.target);
+            const idx = projectSections.indexOf(entry.target);
             if (idx === -1) return;
             const num = String(idx + 1).padStart(2, "0");
             const tot = String(total).padStart(2, "0");
@@ -82,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }, { threshold: 0.5 });
 
-    sections.forEach((s) => headingCounterObserver.observe(s));
+    projectSections.forEach((section) => headingCounterObserver.observe(section));
 
     // 3. ONE-PROJECT-PER-SCROLL INTENTIONAL WHEEL CONTROLLER
     let isScrolling = false;
