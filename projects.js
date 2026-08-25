@@ -45,6 +45,45 @@ document.addEventListener("DOMContentLoaded", () => {
 
     sections.forEach(section => observer.observe(section));
 
+    // Inject a small "04 / 07" style index above each card title for a less-flat feel.
+    // Also wire a heading counter that ticks with the active slide.
+    const total = sections.length;
+    const heading = document.querySelector(".projects-page-heading");
+
+    // Small index label above each card title.
+    sections.forEach((section, idx) => {
+        const title = section.querySelector(".card__title");
+        if (!title || title.previousElementSibling?.classList.contains("card__index")) return;
+        const indexEl = document.createElement("span");
+        indexEl.classList.add("card__index");
+        const num = String(idx + 1).padStart(2, "0");
+        const tot = String(total).padStart(2, "0");
+        indexEl.textContent = `${num} / ${tot}`;
+        title.parentNode.insertBefore(indexEl, title);
+    });
+
+    // Live "01 — 07" counter under the page heading. Updates with the active section.
+    let counterEl = null;
+    if (heading) {
+        counterEl = document.createElement("span");
+        counterEl.classList.add("heading-counter");
+        counterEl.textContent = `01 — ${String(total).padStart(2, "0")}`;
+        heading.appendChild(counterEl);
+    }
+
+    const headingCounterObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting || !counterEl) return;
+            const idx = sections.indexOf(entry.target);
+            if (idx === -1) return;
+            const num = String(idx + 1).padStart(2, "0");
+            const tot = String(total).padStart(2, "0");
+            counterEl.textContent = `${num} — ${tot}`;
+        });
+    }, { threshold: 0.5 });
+
+    sections.forEach((s) => headingCounterObserver.observe(s));
+
     // 3. ONE-PROJECT-PER-SCROLL INTENTIONAL WHEEL CONTROLLER
     let isScrolling = false;
     let scrollTimeout = null;

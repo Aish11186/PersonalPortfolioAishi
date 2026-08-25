@@ -29,10 +29,10 @@ body::before {
   top: 78px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 1.85rem;
-  font-weight: 700;
-  color: #ffffff;
-  letter-spacing: 2.5px;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.92);
+  letter-spacing: 6px;
   text-transform: uppercase;
   z-index: 1000;
   margin: 0;
@@ -41,14 +41,25 @@ body::before {
   white-space: nowrap;
 }
 
+.projects-page-heading .heading-counter {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 3px;
+  color: rgba(255, 255, 255, 0.35);
+  margin-top: 10px;
+  font-variant-numeric: tabular-nums;
+  transition: color 0.3s ease;
+}
+
 /* TOP THIN PROGRESS INDICATOR - PLAIN WHITE LINE BELOW MY PROJECTS TITLE */
 .progress-bar-container {
   position: fixed;
   top: 122px;
   left: 0;
   width: 100%;
-  height: 2px;
-  background: rgba(255, 255, 255, 0.1);
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
   z-index: 999;
   pointer-events: none;
 }
@@ -56,7 +67,7 @@ body::before {
 .progress-bar {
   height: 100%;
   width: 0%;
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.85);
   box-shadow: none;
   transition: width 0.15s ease-out;
 }
@@ -128,11 +139,11 @@ nav a:hover {
   flex-direction: column;
   width: 100%;
   max-width: 1080px;
-  background: rgba(18, 20, 28, 0.88);
+  background: rgba(20, 20, 22, 0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
   overflow: hidden;
   box-shadow: 0 16px 45px rgba(0, 0, 0, 0.7);
   opacity: 0.9;
@@ -146,8 +157,8 @@ nav a:hover {
 }
 
 .project-card:hover {
-  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.8), 0 0 1px rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.8), 0 0 1px rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .project-section.is-active .project-card:hover {
@@ -160,8 +171,35 @@ nav a:hover {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background-color: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   flex-shrink: 0;
+  position: relative;
+}
+
+.project-card .card__image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.35) 100%);
+  pointer-events: none;
+}
+
+/* Top hairline accent that sweeps in when the card becomes active. */
+.project-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 1px;
+  width: 0%;
+  background: rgba(255, 255, 255, 0.6);
+  z-index: 2;
+  transition: width 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.project-section.is-active .project-card::after {
+  width: 100%;
 }
 
 /* Project images selectors */
@@ -177,6 +215,17 @@ nav a:hover {
   background-image: url("https://i.pinimg.com/1200x/c3/d1/92/c3d1929e4ebea807d0a40989a17e0bb8.jpg");
 }
 
+#project-4 .card__image {
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.03) 0px,
+      rgba(255, 255, 255, 0.03) 1px,
+      transparent 1px,
+      transparent 16px
+    );
+}
+
 #project-5 .card__image {
   background-image: url("emotionpicforportfolio.png");
 }
@@ -190,38 +239,76 @@ nav a:hover {
 }
 
 .project-card .card__content {
-  padding: 26px 36px;
+  padding: 32px 44px 36px 44px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 18px;
 }
 
 .card__title {
-  font-size: 1.8rem;
-  font-weight: 700;
+  font-size: 2.1rem;
+  font-weight: 600;
   color: #fff;
   margin: 0;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.2px;
+  line-height: 1.2;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s ease;
+}
+
+.card__index {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 3px;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  font-variant-numeric: tabular-nums;
+  transition: color 0.3s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s ease;
+}
+
+.project-section.is-active .card__index {
+  color: rgba(255, 255, 255, 0.75);
 }
 
 .card__describe {
-  font-size: 0.96rem;
-  line-height: 1.62;
-  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.72);
   margin: 0;
+  max-width: 720px;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.05s, opacity 0.6s ease 0.05s;
 }
 
 .card__describe a {
-  color: #00f2fe;
+  color: rgba(255, 255, 255, 0.95);
   text-decoration: none;
   font-weight: 500;
   transition: all 0.3s ease;
-  border-bottom: 1px dotted #00f2fe;
+  border-bottom: 1px dotted rgba(255, 255, 255, 0.5);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.3px;
 }
 
 .card__describe a:hover {
   color: #fff;
   border-bottom: 1px solid #fff;
+}
+
+/* Off-screen by default, slides in when the section becomes active. */
+.card__index,
+.card__title,
+.card__describe {
+  transform: translateX(18px);
+  opacity: 0;
+}
+
+.project-section.is-active .card__index,
+.project-section.is-active .card__title,
+.project-section.is-active .card__describe {
+  transform: translateX(0);
+  opacity: 1;
 }
 
 /* RESPONSIVE DESIGN FOR DIFFERENT SCREEN HEIGHTS & WIDTHS */
@@ -338,17 +425,17 @@ nav a:hover {
   }
 
   .project-card .card__content {
-    padding: 16px 20px;
+    padding: 20px 22px 22px 22px;
     gap: 10px;
   }
 
   .card__title {
-    font-size: 1.3rem;
+    font-size: 1.35rem;
   }
 
   .card__describe {
     font-size: 0.84rem;
-    line-height: 1.45;
+    line-height: 1.55;
   }
 }
 
@@ -379,16 +466,16 @@ nav a:hover {
   }
 
   .project-card .card__content {
-    padding: 14px 16px;
+    padding: 16px 16px 18px 16px;
     gap: 8px;
   }
 
   .card__title {
-    font-size: 1.15rem;
+    font-size: 1.2rem;
   }
 
   .card__describe {
-    font-size: 0.78rem;
-    line-height: 1.4;
+    font-size: 0.8rem;
+    line-height: 1.5;
   }
 }
